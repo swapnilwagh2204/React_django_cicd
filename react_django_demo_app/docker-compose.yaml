@@ -1,8 +1,12 @@
-version: "*3.9"
+version: "3.9"
 services:
   django_todo_app:
     container_name: "django-todo-app"
-    image: swapnil2204/django_x86
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - TARGETARCH=${TARGETARCH:-$(uname -m)}
     ports:
       - 8000:8001
     volumes:
